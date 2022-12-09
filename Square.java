@@ -69,7 +69,7 @@ public class Square{
           }
       }
 
-      if(controlState(state)) {
+      if(!controlState(state)) {
         throw new Exception("Valore della cella non valido");
       } else {
         this.state = state;
@@ -111,7 +111,7 @@ public class Square{
 
   public void updateState(String state) {
     try {
-      if(controlState(state)) {
+      if(!controlState(state)) {
         throw new Exception("Valore della cella non valido");
       } else {
         this.state = state;
