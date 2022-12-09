@@ -29,72 +29,47 @@ public class Square{
    * ma ci si può muovere esclusivamente sulle celle nere.
   */
   
-  public Square(int x, int y, String state, String color){
+  public Square(int x, int y, String state){
     try {
-      switch(x) {
-        case 0 :
-          coordinate[0] = 'A';
-          break;
-        case 1 :
-          coordinate[0] = 'B';
-          break;
-        case 2 :
-          coordinate[0] = 'C';
-          break;
-        case 3 :
-          coordinate[0] = 'D';
-          break;
-        case 4 :
-          coordinate[0] = 'E';
-          break;
-        case 5 :
-          coordinate[0] = 'F';
-          break;
-        case 6 :
-          coordinate[0] = 'G';
-          break;
-        case 7 :
-          coordinate[0] = 'H';
-          break;
-        default :
-          throw new Exception("Coordinate non valide");
+        switch (x) {
+            case 0 -> coordinate[0] = 'A';
+            case 1 -> coordinate[0] = 'B';
+            case 2 -> coordinate[0] = 'C';
+            case 3 -> coordinate[0] = 'D';
+            case 4 -> coordinate[0] = 'E';
+            case 5 -> coordinate[0] = 'F';
+            case 6 -> coordinate[0] = 'G';
+            case 7 -> coordinate[0] = 'H';
+            default -> throw new Exception("Coordinate non valide");
+        }
+        switch (y) {
+            case 0 -> coordinate[1] = '1';
+            case 1 -> coordinate[1] = '2';
+            case 2 -> coordinate[1] = '3';
+            case 3 -> coordinate[1] = '4';
+            case 4 -> coordinate[1] = '5';
+            case 5 -> coordinate[1] = '6';
+            case 6 -> coordinate[1] = '7';
+            case 7 -> coordinate[1] = '8';
+            default -> throw new Exception("Coordinate non valide");
+        }
+
+      // Assign color to square (purely based on square coordinates)
+      if(x % 2 == 0){ // if x (column) even => B, D, F, H
+          if(y % 2 == 0){ // if y (row) even => 2, 4, 6, 8
+              this.color = "white"; //example: x=1, y=1 => square B2 => white
+          } else { // if y (row) odd => 1, 3, 5, 7
+              this.color = "black"; //example: x=1, y=0 => square B1 => black
+          }
+      } else { // if x (column) odd => A, C, E, G
+          if(y % 2 == 0){ // if y (row) even => 2, 4, 6, 8
+              this.color = "black"; //example: x=0, y=1 => square A2 => black
+          } else { // if y (row) odd => 1, 3, 5, 7
+              this.color = "white"; //example: x=0, y=0 => square A1 => white
+          }
       }
-      switch(y) {
-        case 0 :
-          coordinate[1] = '1';
-          break;
-        case 1 :
-          coordinate[1] = '2';
-          break;
-        case 2 :
-          coordinate[1] = '3';
-          break;
-        case 3 :
-          coordinate[1] = '4';
-          break;
-        case 4 :
-          coordinate[1] = '5';
-          break;
-        case 5 :
-          coordinate[1] = '6';
-          break;
-        case 6 :
-          coordinate[1] = '7';
-          break;
-        case 7 :
-          coordinate[1] = '8';
-          break;
-        default :
-          throw new Exception("Coordinate non valide");
-      }
-      if(color.equals("white")) {
-        this.color = color;
-      } else if (color.equals("black")) {
-        this.color = color;
-      } else {
-        throw new Exception("Colore della cella non valido");
-      }
-      if(controlState(state) == false) {
+
+      if(controlState(state)) {
         throw new Exception("Valore della cella non valido");
       } else {
         this.state = state;
@@ -131,12 +106,12 @@ public class Square{
   }
   
   public boolean isFree() {
-    return state.equals("[ ]") == true ? true : false;
+    return state.equals("[ ]");
   }
 
   public void updateState(String state) {
     try {
-      if(controlState(state) == false) {
+      if(controlState(state)) {
         throw new Exception("Valore della cella non valido");
       } else {
         this.state = state;
