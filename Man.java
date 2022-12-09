@@ -24,7 +24,7 @@ public class Man {
       }
       if(square.getColor().equals("white")) {
         throw new Exception("Su questa cella non può esserci una pedina");
-      } else if(square.toString().equals(this.symbol)) {
+      } else if(!square.toString().equals(this.symbol)) {
         throw new Exception("Questa pedina non deve stare su questa cella");
       } else {
         this.square = square;
