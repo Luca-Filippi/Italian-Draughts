@@ -2,26 +2,17 @@ import java.lang.Exception;
 
 public class Square{
   
-  private String[] possibleState = {"[ ]" , "[w]" , "[W]" , "[b]" , "[B]"};
-  /* 
-   * Una cella può assumere solmente 5 stati differenti:
-   * libera -> [ ];
-   * occupata da un white man -> [w];
-   * occupata da un white King (Dama) -> [W];
-   * occupata da un black man -> [b];
-   * occupata da un black King -> [B];
-  */
-  private String state; 
+  private SquareContent state;
   /* 
    * Attributo che rappresenta lo stato delle cella 
    */
-  private char[] coordinate = new char[2]; 
+  private final char[] coordinates = new char[2];
   /* 
    * Attributo che rappresenta le coordinate della cella.
    * Le coordinate di una scacchiera vnno dalla cella A1,
    * fino alla cella H8.
   */
-  private String color; 
+  private String color;
   /* 
    * Attributo che rappresenta il colore della cella.
    * Il colore di una cella può essere nero o bianco.
@@ -29,28 +20,28 @@ public class Square{
    * ma ci si può muovere esclusivamente sulle celle nere.
   */
   
-  public Square(int x, int y, String state){
+  public Square(int x, int y, SquareContent state){
     try {
         switch (x) {
-            case 0 -> coordinate[0] = 'A';
-            case 1 -> coordinate[0] = 'B';
-            case 2 -> coordinate[0] = 'C';
-            case 3 -> coordinate[0] = 'D';
-            case 4 -> coordinate[0] = 'E';
-            case 5 -> coordinate[0] = 'F';
-            case 6 -> coordinate[0] = 'G';
-            case 7 -> coordinate[0] = 'H';
+            case 0 -> coordinates[0] = 'A';
+            case 1 -> coordinates[0] = 'B';
+            case 2 -> coordinates[0] = 'C';
+            case 3 -> coordinates[0] = 'D';
+            case 4 -> coordinates[0] = 'E';
+            case 5 -> coordinates[0] = 'F';
+            case 6 -> coordinates[0] = 'G';
+            case 7 -> coordinates[0] = 'H';
             default -> throw new Exception("Coordinate non valide");
         }
         switch (y) {
-            case 0 -> coordinate[1] = '1';
-            case 1 -> coordinate[1] = '2';
-            case 2 -> coordinate[1] = '3';
-            case 3 -> coordinate[1] = '4';
-            case 4 -> coordinate[1] = '5';
-            case 5 -> coordinate[1] = '6';
-            case 6 -> coordinate[1] = '7';
-            case 7 -> coordinate[1] = '8';
+            case 0 -> coordinates[1] = '1';
+            case 1 -> coordinates[1] = '2';
+            case 2 -> coordinates[1] = '3';
+            case 3 -> coordinates[1] = '4';
+            case 4 -> coordinates[1] = '5';
+            case 5 -> coordinates[1] = '6';
+            case 6 -> coordinates[1] = '7';
+            case 7 -> coordinates[1] = '8';
             default -> throw new Exception("Coordinate non valide");
         }
 
@@ -69,7 +60,7 @@ public class Square{
           }
       }
 
-      if(!controlState(state)) {
+      if(state == null) {
         throw new Exception("Valore della cella non valido");
       } else {
         this.state = state;
@@ -79,26 +70,17 @@ public class Square{
       System.exit(-1);
     }
   }
-  
-  private boolean controlState(String state) {
-    for(int i = 0; i < 5; i++) {
-      if(state.equals(possibleState[i])) {
-        return true;
-      }
-    }
-    return false;
-  }
-  
+
   public String toString() {
-    return this.state;
+      return this.state.toString();
   }
 
   public String getCoordinateX() {
-    return Character.toString(this.coordinate[0]);
+    return Character.toString(this.coordinates[0]);
   }
 
   public String getCoordinateY() {
-    return Character.toString(this.coordinate[1]);
+    return Character.toString(this.coordinates[1]);
   }
 
   public String getColor() {
@@ -106,12 +88,12 @@ public class Square{
   }
   
   public boolean isFree() {
-    return state.equals("[ ]");
+    return state.equals(SquareContent.EMPTY);
   }
 
-  public void updateState(String state) {
+  public void updateState(SquareContent state) {
     try {
-      if(!controlState(state)) {
+      if(state == null) {
         throw new Exception("Valore della cella non valido");
       } else {
         this.state = state;
