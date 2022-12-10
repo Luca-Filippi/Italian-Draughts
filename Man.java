@@ -4,6 +4,7 @@ public class Man implements Piece {
 
   protected PieceColor color; // color of the piece, either black or white
   protected Square square; // current square on which the piece is positioned
+  //protected SquareContent symbol
 
   public Man(PieceColor color, Square square) {
     try{
@@ -14,13 +15,9 @@ public class Man implements Piece {
       }
       if(square.getColor().equals(SquareColor.WHITE)) {
         throw new Exception("Pieces cannot be on white squares");
-      }
-      /*
-      else if(!square.toString().equals(this.type)) {
-        throw new Exception("Questa pedina non deve stare su questa cella");
-      }
-      */
-       else {
+      } /* else if(!square.toString().equals(this.symbol)) {
+        throw new Exception("This piece cannot stand on this square");
+      } */ else {
         this.square = square;
       }
     } catch(Exception e) {
@@ -44,7 +41,9 @@ public class Man implements Piece {
     try{
       if(newSquare.getColor().equals(SquareColor.WHITE)) {
         throw new Exception("Pieces cannot be on white squares");
-      } else {
+      } /* else if(!square.toString().equals(this.symbol)) {
+        throw new Exception("This piece cannot stand on this square");
+      } */ else {
         this.square = newSquare;
       }
     } catch(Exception e) {
