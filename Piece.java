@@ -1,7 +1,8 @@
 public interface Piece {
 
-    String getColor();
+    PieceColor getColor();
     Square getSquare();
-    String getSymbol();
     void updateSquare(Square square);
+    boolean isMan();
+    boolean isKing();
 }
