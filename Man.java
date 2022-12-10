@@ -47,12 +47,12 @@ public class Man implements Piece {
     return this.symbol;
   }
 
-  public void updateSquare(Square square) {
+  public void updateSquare(Square newSquare) {
     try{
-      if(square.getColor().equals("white")) {
+      if(newSquare.getColor().equals("white")) {
         throw new Exception("Su questa cella non può esserci una pedina");
       } else {
-        this.square = square;
+        this.square = newSquare;
       }
     } catch(Exception e) {
       System.err.println(e.getMessage());
