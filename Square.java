@@ -12,7 +12,7 @@ public class Square{
    * Le coordinate di una scacchiera vnno dalla cella A1,
    * fino alla cella H8.
   */
-  private String color;
+  private SquareColor color;
   /* 
    * Attributo che rappresenta il colore della cella.
    * Il colore di una cella può essere nero o bianco.
@@ -48,15 +48,15 @@ public class Square{
       // Assign color to square (purely based on square coordinates)
       if(x % 2 == 0){ // if x (column) even => B, D, F, H
           if(y % 2 == 0){ // if y (row) even => 2, 4, 6, 8
-              this.color = "white"; //example: x=1, y=1 => square B2 => white
+              this.color = SquareColor.WHITE; //example: x=1, y=1 => square B2 => white
           } else { // if y (row) odd => 1, 3, 5, 7
-              this.color = "black"; //example: x=1, y=0 => square B1 => black
+              this.color = SquareColor.BLACK; //example: x=1, y=0 => square B1 => black
           }
       } else { // if x (column) odd => A, C, E, G
           if(y % 2 == 0){ // if y (row) even => 2, 4, 6, 8
-              this.color = "black"; //example: x=0, y=1 => square A2 => black
+              this.color = SquareColor.BLACK; //example: x=0, y=1 => square A2 => black
           } else { // if y (row) odd => 1, 3, 5, 7
-              this.color = "white"; //example: x=0, y=0 => square A1 => white
+              this.color = SquareColor.WHITE; //example: x=0, y=0 => square A1 => white
           }
       }
 
@@ -83,7 +83,7 @@ public class Square{
     return Character.toString(this.coordinates[1]);
   }
 
-  public String getColor() {
+  public SquareColor getColor() {
     return this.color;
   }
   
