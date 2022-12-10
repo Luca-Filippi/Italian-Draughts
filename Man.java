@@ -12,7 +12,7 @@ public class Man implements Piece {
       } else{
         this.color = color;
       }
-      if(square.getColor().equals("white")) {
+      if(square.getColor().equals(SquareColor.WHITE)) {
         throw new Exception("Pieces cannot be on white squares");
       }
       /*
@@ -42,7 +42,7 @@ public class Man implements Piece {
   @Override
   public void updateSquare(Square newSquare) {
     try{
-      if(newSquare.getColor().equals("white")) {
+      if(newSquare.getColor().equals(SquareColor.WHITE)) {
         throw new Exception("Pieces cannot be on white squares");
       } else {
         this.square = newSquare;
