@@ -2,22 +2,18 @@ import java.lang.Exception;
 
 public class Man implements Piece {
 
-  protected PieceColor color;
-  protected Square square;
-  /*
-   * Un oggetto di tipo Man è identificato dal colore del pezzo
-   * e dalla cella in cui si trova.
-   */
+  protected PieceColor color; // color of the piece, either black or white
+  protected Square square; // current square on which the piece is positioned
 
   public Man(PieceColor color, Square square) {
     try{
       if(color == null){
-        throw new Exception("Questo colore non è valido");
+        throw new Exception("Color cannot be null");
       } else{
         this.color = color;
       }
       if(square.getColor().equals("white")) {
-        throw new Exception("Su questa cella non può esserci una pedina");
+        throw new Exception("Pieces cannot be on white squares");
       }
       /*
       else if(!square.toString().equals(this.type)) {
@@ -47,7 +43,7 @@ public class Man implements Piece {
   public void updateSquare(Square newSquare) {
     try{
       if(newSquare.getColor().equals("white")) {
-        throw new Exception("Su questa cella non può esserci una pedina");
+        throw new Exception("Pieces cannot be on white squares");
       } else {
         this.square = newSquare;
       }

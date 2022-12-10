@@ -2,23 +2,13 @@ import java.lang.Exception;
 
 public class Square{
   
-  private SquareContent state;
-  /* 
-   * Attributo che rappresenta lo stato delle cella 
-   */
-  private final char[] coordinates = new char[2];
-  /* 
-   * Attributo che rappresenta le coordinate della cella.
-   * Le coordinate di una scacchiera vnno dalla cella A1,
-   * fino alla cella H8.
-  */
-  private SquareColor color;
-  /* 
-   * Attributo che rappresenta il colore della cella.
-   * Il colore di una cella può essere nero o bianco.
-   * Nella board vengono create 32 celle bianche e 32 celle nere,
-   * ma ci si può muovere esclusivamente sulle celle nere.
-  */
+  private SquareContent state; // state of the square
+    // possible values: empty, white_man, white_king, black_man, black_king
+
+  private final char[] coordinates = new char[2]; //coordinates of the cell ( from A1 to H8)
+
+  private SquareColor color; // square color (black or white)
+    // italian-draughts pieces are only allowed on black squares
   
   public Square(int x, int y, SquareContent state){
     try {
@@ -31,7 +21,7 @@ public class Square{
             case 5 -> coordinates[0] = 'F';
             case 6 -> coordinates[0] = 'G';
             case 7 -> coordinates[0] = 'H';
-            default -> throw new Exception("Coordinate non valide");
+            default -> throw new Exception("Coordinates accepted value are integers from 0 to 7 included");
         }
         switch (y) {
             case 0 -> coordinates[1] = '1';
@@ -42,7 +32,7 @@ public class Square{
             case 5 -> coordinates[1] = '6';
             case 6 -> coordinates[1] = '7';
             case 7 -> coordinates[1] = '8';
-            default -> throw new Exception("Coordinate non valide");
+            default -> throw new Exception("Coordinates accepted value are integers from 0 to 7 included");
         }
 
       // Assign color to square (purely based on square coordinates)
@@ -61,7 +51,7 @@ public class Square{
       }
 
       if(state == null) {
-        throw new Exception("Valore della cella non valido");
+        throw new Exception("Square content cannot be null");
       } else {
         this.state = state;
       }
@@ -94,7 +84,7 @@ public class Square{
   public void updateState(SquareContent state) {
     try {
       if(state == null) {
-        throw new Exception("Valore della cella non valido");
+        throw new Exception("Square content cannot be null");
       } else {
         this.state = state;
       }
