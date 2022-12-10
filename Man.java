@@ -1,6 +1,6 @@
 import java.lang.Exception;
 
-public class Man {
+public class Man implements Piece {
 
   protected String color;
   protected Square square;
