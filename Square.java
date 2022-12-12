@@ -10,7 +10,7 @@ public class Square{
   private SquareColor color; // square color (black or white)
     // italian-draughts pieces are only allowed on black squares
   
-  public Square(int x, int y, SquareContent state){
+  public Square(int x, int y){
     try {
         switch (x) {
             case 0 -> coordinates[0] = 'A';
@@ -49,12 +49,7 @@ public class Square{
               this.color = SquareColor.WHITE; //example: x=0, y=0 => square A1 => white
           }
       }
-
-      if(state == null) {
-        throw new Exception("Square content cannot be null");
-      } else {
-        this.state = state;
-      }
+      this.state = SquareContent.EMPTY;
     } catch(Exception e) {
       System.err.println(e.getMessage());
       System.exit(-1);
