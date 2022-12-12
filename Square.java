@@ -52,7 +52,7 @@ public class Square{
           }
       }
       this.state = SquareContent.EMPTY;
-      this.lastRow = LastRow.EMPTY;
+      this.lastRow = null;
     } catch(Exception e) {
       System.err.println(e.getMessage());
       System.exit(-1);
@@ -94,7 +94,7 @@ public class Square{
         } else if((state == SquareContent.BLACK_MAN) || (state == SquareContent.BLACK_KING)) {
           lastRow = LastRow.BLACK;
         } else {
-          lastRow = LastRow.EMPTY;
+          lastRow = null;
         }
       }
     } catch(Exception e) {
