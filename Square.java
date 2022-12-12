@@ -10,6 +10,8 @@ public class Square{
   private SquareColor color; // square color (black or white)
     // italian-draughts pieces are only allowed on black squares
   
+  private LastRow lastRow;
+  
   public Square(int x, int y){
     try {
         switch (x) {
@@ -50,6 +52,7 @@ public class Square{
           }
       }
       this.state = SquareContent.EMPTY;
+      this.lastRow = LastRow.EMPTY;
     } catch(Exception e) {
       System.err.println(e.getMessage());
       System.exit(-1);
@@ -72,6 +75,10 @@ public class Square{
     return this.color;
   }
   
+  public LastRow getLastRow() {
+    return this.lastRow;
+  }
+  
   public boolean isFree() {
     return state.equals(SquareContent.EMPTY);
   }
@@ -82,6 +89,13 @@ public class Square{
         throw new Exception("Square content cannot be null");
       } else {
         this.state = state;
+        if((state == SquareContent.WHITE_MAN) || (state == SquareContent.WHITE_KING)) {
+          lastRow = LastRow.WHITE;
+        } else if((state == SquareContent.BLACK_MAN) || (state == SquareContent.BLACK_KING)) {
+          lastRow = LastRow.BLACK;
+        } else {
+          lastRow = LastRow.EMPTY;
+        }
       }
     } catch(Exception e) {
       System.err.println(e.getMessage());
