@@ -1,6 +1,6 @@
 public enum LastRow {
-  WHITE("H"),
-  BLACK("A");
+  WHITE("8"),
+  BLACK("1");
 
   private final String coordinate;
 
