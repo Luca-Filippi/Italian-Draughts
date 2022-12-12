@@ -6,7 +6,7 @@ public class Board {
         boardSquares = new Square[8][8];
         for(byte i=0; i<8; i++){
             for(byte j=0; j<8; j++){
-                boardSquares[i][j] = new Square(i, j, SquareContent.EMPTY);
+                boardSquares[i][j] = new Square(i, j);
             }
             System.out.println();
         }
